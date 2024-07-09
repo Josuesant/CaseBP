@@ -54,3 +54,8 @@ services:
 volumes:
   postgres:
   rabbitmq:
+  creditocliente:
+    image: creditocliente
+    build:
+      context: .
+      dockerfile: CreditoCliente/Dockerfile
