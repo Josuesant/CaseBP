@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>disable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Integration"/>
+        <InternalsVisibleTo Include="Unit"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="DTOs\BaseRequestDto.cs" />
+      <Compile Remove="DTOs\BaseListDto.cs" />
+      <Compile Remove="DTOs\BaseListRequestDto.cs" />
+      <Compile Remove="DTOs\BaseListResponseDto.cs" />
+      <Compile Remove="DTOs\BaseDataForListResponseDto.cs" />
+      <Compile Remove="DTOs\Users\AuthenticateUserRequestDto.cs" />
+      <Compile Remove="DTOs\Users\DeactivateUserRequestDto.cs" />
+      <Compile Remove="DTOs\Users\ListUserResponseDto.cs" />
+      <Compile Remove="DTOs\Users\ListUsersRequestDto.cs" />
+      <Compile Remove="DTOs\Users\ListUsersResponseDto.cs" />
+      <Compile Remove="DTOs\Users\UpdateUserRequestDto.cs" />
+    </ItemGroup>
+
+</Project>
