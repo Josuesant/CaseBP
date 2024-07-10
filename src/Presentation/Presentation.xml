@@ -98,16 +98,6 @@
             Create user request.
             </summary>
         </member>
-        <member name="T:Presentation.Contracts.Users.ListUserResponse">
-            <summary>
-            List user response.
-            </summary>
-        </member>
-        <member name="P:Presentation.Contracts.Users.ListUserResponse.Email">
-            <summary>
-            Nome.
-            </summary>
-        </member>
         <member name="T:Presentation.Controllers.BaseController">
             <response code="401">Unauthorized access.</response>
             <response code="500">An internal server error has occurred.</response>

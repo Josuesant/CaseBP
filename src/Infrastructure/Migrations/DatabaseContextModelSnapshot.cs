@@ -22,6 +22,94 @@ namespace Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Domain.Entities.Card.CardUser", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<int>("CodigoSeguranca")
+                        .HasColumnType("integer")
+                        .HasColumnName("codigoSeguranca");
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
+                    b.Property<DateTime>("DataValidade")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dataValidade");
+
+                    b.Property<string>("DocumentoCliente")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("documentoCliente");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("nome");
+
+                    b.Property<long>("NumeroCartao")
+                        .HasColumnType("bigint")
+                        .HasColumnName("numeroCartao");
+
+                    b.Property<DateTime>("UltomaAtualizacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DocumentoCliente");
+
+                    b.ToTable("cardUser", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.Credit.CreditAnalysis", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("descricao");
+
+                    b.Property<string>("DocumentoCliente")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("documentoCliente");
+
+                    b.Property<decimal>("LimiteMaximo")
+                        .HasColumnType("numeric")
+                        .HasColumnName("limiteMaximo");
+
+                    b.Property<decimal>("LimiteMinimo")
+                        .HasColumnType("numeric")
+                        .HasColumnName("limiteMinimo");
+
+                    b.Property<int>("StatusAnalise")
+                        .HasColumnType("integer")
+                        .HasColumnName("statusAnalise");
+
+                    b.Property<DateTime>("UltomaAtualizacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DocumentoCliente");
+
+                    b.ToTable("creditAnalysis", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Entities.Users.User", b =>
                 {
                     b.Property<Guid>("Id")

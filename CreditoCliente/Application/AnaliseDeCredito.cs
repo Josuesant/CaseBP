@@ -1,15 +1,15 @@
-﻿using CreditoCliente.Dommain;
-using CreditoCliente.Dommain.Enuns;
+﻿using ContratosEventos.Enums;
+using CreditoCliente.Dommain;
 
 namespace CreditoCliente.Application;
 
-public class AnaliseDeCredito
+public class AnaliseDeCredito : IAnaliseDeCredito
 {
     public RetornoAnaliseCredito Analise(DadosCliente dadosCliente)
     {
         if (dadosCliente.Renda < 600)
         {
-            RetornoAnaliseCredito analise = new(StatusAnalise.Negado, 0, 0, "Renda baixa");
+            RetornoAnaliseCredito analise = new( dadosCliente.DocumentoCliente, StatusAnalise.Negado, 0, 0, "Renda baixa");
             return analise;
         }
         
@@ -28,15 +28,17 @@ public class AnaliseDeCredito
         var pontuacaoGeral = PontuacaoDependentes(poRenda, poEstadoCivil, poIdade, poGenero, poDependentes, peRenda,
             peEstadoCivil, peIdade, peGenero, peDependentes);
 
-        if (pontuacaoGeral <= 3) return new RetornoAnaliseCredito(StatusAnalise.Negado, 0, 0, "Reprovado pela política de crédito");
-        else if (pontuacaoGeral == 4) return new RetornoAnaliseCredito(StatusAnalise.Aprovado, 100, 500, "");
-        else if (pontuacaoGeral == 5) return new RetornoAnaliseCredito(StatusAnalise.Aprovado, 500, 1000, "");
-        else if (pontuacaoGeral == 6) return new RetornoAnaliseCredito(StatusAnalise.Aprovado, 1000, 1500, "");
-        else if (pontuacaoGeral == 7) return new RetornoAnaliseCredito(StatusAnalise.Aprovado, 1500, 2000, "");
+        if (pontuacaoGeral <= 3) return new RetornoAnaliseCredito(dadosCliente.DocumentoCliente, StatusAnalise.Negado, 0, 0, "Reprovado pela política de crédito");
+        else if (pontuacaoGeral == 4) return new RetornoAnaliseCredito(dadosCliente.DocumentoCliente, StatusAnalise.Aprovado, 100, 500, "");
+        else if (pontuacaoGeral == 5) return new RetornoAnaliseCredito(dadosCliente.DocumentoCliente ,StatusAnalise.Aprovado, 500, 1000, "");
+        else if (pontuacaoGeral == 6) return new RetornoAnaliseCredito(dadosCliente.DocumentoCliente, StatusAnalise.Aprovado, 1000, 1500, "");
+        else if (pontuacaoGeral == 7) return new RetornoAnaliseCredito(dadosCliente.DocumentoCliente, StatusAnalise.Aprovado, 1500, 2000, "");
         else
         {
-             return new RetornoAnaliseCredito(StatusAnalise.Aprovado, 2000, 2500, "");
+             return new RetornoAnaliseCredito(dadosCliente.DocumentoCliente, StatusAnalise.Aprovado, 2000, 2500, "");
         }
+        
+        
     }
 
     private int PontuacaoRenda( decimal renda, int peRenda)

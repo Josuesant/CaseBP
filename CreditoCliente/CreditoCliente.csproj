@@ -9,6 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.4-develop.1861" />
         <PackageReference Include="Microsoft.Azure.ServiceBus" Version="5.2.0" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0"/>
         <PackageReference Include="RabbitMQ.Client" Version="7.0.0-alpha.6" />
@@ -18,5 +19,14 @@
       <Content Include="..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Dommain\Enuns\" />
+      <Folder Include="Presentation\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ContratosEventos\ContratosEventos.csproj" />
     </ItemGroup>
 </Project>

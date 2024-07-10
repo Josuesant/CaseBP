@@ -1,13 +1,14 @@
 using Application.Exceptions;
+using ContratosEventos;
 using Domain.DTOs.Users;
 using Domain.Entities;
 using Domain.Entities.Users;
-using Infrastructure.RabbitMq;
+using MassTransit;
 using Microsoft.Extensions.Logging;
 
 namespace Application.Services.Users;
 
-public class UserCreator(IBaseEntityRepository<User> repository, ILogger<UserCreator> logger, BasePublisher publisher)
+public class UserCreator(IBaseEntityRepository<User> repository, ILogger<UserCreator> logger, IPublishEndpoint publishEndpoint)
     : IUserCreator
 {
     public async Task CreateAsync(CreateUserRequestDto request)
@@ -33,6 +34,16 @@ public class UserCreator(IBaseEntityRepository<User> repository, ILogger<UserCre
 
         await repository.InsertOneAsync(cliente);
 
-        publisher.Publish(nameof(ExchangeEnum.UserEntityRequestsExchange), 1);
+        var dados = new DadosClienteEvent()
+        {
+            DocumentoCliente = request.Documento,
+            Renda = request.Renda,
+            EstadoCivil = request.EstadoCivil,
+            Dependentes = request.Dependentes,
+            Genero = request.Genero,
+            Idade = request.Idade
+        };
+        await publishEndpoint.Publish(dados);
+
     }
 }

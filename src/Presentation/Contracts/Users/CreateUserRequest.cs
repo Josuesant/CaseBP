@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using ContratosEventos.Enums;
 using Domain.DTOs.Users;
-using Domain.Enuns;
 
 namespace Presentation.Contracts.Users;
 

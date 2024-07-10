@@ -22,7 +22,7 @@ public static class AppSettings
 
     public static string PostgreSqlConnectionString =>
         Environment.GetEnvironmentVariable("POSTGRESQL_CONNECTION_STRING")?.Trim() ??
-        "Host=127.0.0.1;Port=5432;Database=CadastroCliente;Username=postgres;Password=postgres;Command Timeout=60;Timeout=60;SSL Mode=Disable;Trust Server Certificate=True";
+        "Host=postgres;Port=5432;Database=CadastroCliente;Username=postgres;Password=postgres;Command Timeout=60;Timeout=60;SSL Mode=Disable;Trust Server Certificate=True";
 
     public static string RabbitMqConnectionString =>
         Environment.GetEnvironmentVariable("RABBITMQ_CONNECTION_STRING")?.Trim() ??

@@ -1,4 +1,4 @@
-﻿using CreditoCliente.Dommain.Enuns;
+﻿using ContratosEventos.Enums;
 
 namespace CreditoCliente.Dommain;
 

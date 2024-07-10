@@ -1,4 +1,4 @@
-using Domain.Enuns;
+using ContratosEventos.Enums;
 
 namespace Domain.Entities.Users;
 

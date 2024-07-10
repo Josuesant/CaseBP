@@ -25,4 +25,13 @@
       <Compile Remove="DTOs\Users\UpdateUserRequestDto.cs" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\ContratosEventos\ContratosEventos.csproj" />
+      <ProjectReference Include="..\..\CreditoCliente\CreditoCliente.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Enuns\" />
+    </ItemGroup>
+
 </Project>

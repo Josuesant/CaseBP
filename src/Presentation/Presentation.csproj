@@ -25,19 +25,6 @@
         <InternalsVisibleTo Include="Unit"/>
     </ItemGroup>
 
-    <ItemGroup>
-      <Compile Remove="Contracts\Users\AuthenticateUserRequest.cs" />
-      <Compile Remove="Contracts\Users\DeactivateUserRequest.cs" />
-      <Compile Remove="Contracts\Users\ListUsersRequest.cs" />
-      <Compile Remove="Contracts\Users\ListUsersResponse.cs" />
-      <Compile Remove="Contracts\Users\UpdateUserRequest.cs" />
-      <Compile Remove="Swagger\Users\DeactivateUserRequestExample.cs" />
-      <Compile Remove="Swagger\Users\AuthenticateUserRequestExample.cs" />
-      <Compile Remove="Swagger\Users\ListUsersRequestExample.cs" />
-      <Compile Remove="Swagger\Users\ListUsersResponseExample.cs" />
-      <Compile Remove="Swagger\Users\UpdateUserRequestExample.cs" />
-    </ItemGroup>
-
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' Or '$(Configuration)' == 'Release' ">
         <DocumentationFile>Presentation.xml</DocumentationFile>
         <NoWarn>1591;1701;1702</NoWarn>

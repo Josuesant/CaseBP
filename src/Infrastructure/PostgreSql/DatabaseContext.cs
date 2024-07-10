@@ -1,3 +1,5 @@
+using Domain.Entities.Card;
+using Domain.Entities.Credit;
 using Domain.Entities.Users;
 using Infrastructure.PostgreSql.Mappings;
 using Microsoft.EntityFrameworkCore;
@@ -11,5 +13,7 @@ public class DatabaseContext(DbContextOptions<DatabaseContext> options) : DbCont
         base.OnModelCreating(builder);
 
         _ = new UserMapping(builder.Entity<User>());
+        _ = new CreditAnalysisMapping(builder.Entity<CreditAnalysis>());
+        _ = new CardUserMapping(builder.Entity<CardUser>());
     }
 }

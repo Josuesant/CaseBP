@@ -1,5 +1,4 @@
-using System.Security.Principal;
-using Domain.Enuns;
+using ContratosEventos.Enums;
 
 namespace Domain.DTOs.Users;
 

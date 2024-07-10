@@ -1,6 +1,7 @@
 using Application.Observability;
 using Application.Services.Users;
 using Domain;
+using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -26,6 +27,26 @@ public static class ServiceCollectionExtension
             x.ServicesStopConcurrently = true;
         });
 
-        services.AddHostedService<UserMeterReceiver>();
+        //services.AddHostedService<UserMeterReceiver>();
+        //services.AddRabbitMq();
     }
+
+    // internal static void AddRabbitMq(this IServiceCollection services)
+    // {
+    //     services.AddMassTransit(x =>
+    //     {
+    //         x.AddConsumer<ConsumerDadosClienteEvent>();
+    //         x.UsingRabbitMq((ctx, cfg) =>
+    //         {
+    //             cfg.Host("localhost", "/", c =>
+    //             {
+    //                 c.Username("guest");
+    //                 c.Password("guest");
+    //             });
+    //             cfg.ConfigureEndpoints(ctx);
+    //             cfg.ReceiveEndpoint("DadosAnalise", e => {e.ConfigureConsumer<ConsumerDadosClienteEvent>(ctx);});
+    //         });
+    //     });
+    //     
+    // }
 }

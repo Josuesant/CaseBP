@@ -1,6 +1,8 @@
 using System.Collections.Immutable;
 using System.Reflection;
 using Domain;
+using Application.Consumers;
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -18,6 +20,7 @@ public static class ServiceCollectionExtension
         services.AddRouting(x => x.LowercaseUrls = true);
         services.AddJwt();
         services.AddSwagger();
+        services.AddRabbitMq();
     }
 
     private static void AddJwt(this IServiceCollection services) => services
@@ -40,6 +43,25 @@ public static class ServiceCollectionExtension
                 ValidIssuer = AppSettings.JwtIssuer
             };
         });
+    
+    internal static void AddRabbitMq(this IServiceCollection services)
+    {
+        services.AddMassTransit(x =>
+        {
+            x.AddConsumer<ConsumerDadosClienteEvent>();
+            x.UsingRabbitMq((ctx, cfg) =>
+            {
+                cfg.Host("localhost", "/", c =>
+                {
+                    c.Username("guest");
+                    c.Password("guest");
+                });
+                cfg.ConfigureEndpoints(ctx);
+                cfg.ReceiveEndpoint("DadosAnalise", e => {e.ConfigureConsumer<ConsumerDadosClienteEvent>(ctx);});
+            });
+        });
+        
+    }
 
     private static void AddSwagger(this IServiceCollection services)
     {

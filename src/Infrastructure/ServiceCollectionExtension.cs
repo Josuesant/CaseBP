@@ -2,10 +2,8 @@ using Domain;
 using Domain.Entities;
 using Infrastructure.PostgreSql;
 using Infrastructure.PostgreSql.Repositories;
-using Infrastructure.RabbitMq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using RabbitMQ.Client;
 
 namespace Infrastructure;
 
@@ -14,7 +12,6 @@ public static class ServiceCollectionExtension
     public static void AddInfrastructure(this IServiceCollection services)
     {
         services.AddPostgreSql();
-        services.AddRabbitMq();
     }
 
     internal static void AddPostgreSql(this IServiceCollection services)
@@ -34,16 +31,5 @@ public static class ServiceCollectionExtension
         services.AddHealthChecks()
             .AddDbContextCheck<DatabaseContext>()
             .AddNpgSql(AppSettings.PostgreSqlConnectionString);
-    }
-
-    internal static void AddRabbitMq(this IServiceCollection services)
-    {
-        services.AddSingleton<IConnectionFactory>(_ => new ConnectionFactory
-        {
-            Uri = new Uri(AppSettings.RabbitMqConnectionString),
-            DispatchConsumersAsync = true
-        });
-        services.AddSingleton<BasePublisher>();
-        services.AddHealthChecks().AddRabbitMQ();
     }
 }

@@ -36,6 +36,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Application\Services\Users\Helpers\" />
       <Folder Include="Domain\DTOs\" />
       <Folder Include="Domain\Entities\Users\" />
     </ItemGroup>
